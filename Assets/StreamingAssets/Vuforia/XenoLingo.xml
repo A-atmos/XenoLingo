@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="IMG_20231007_192219" size="0.350000 0.466749" />
+    <ImageTarget name="IMG_20231007_181151" size="0.010000 0.016062" />
+    <ImageTarget name="newspaper" size="0.250000 0.187500" />
+    <ImageTarget name="cup" size="0.070000 0.076040" />
+    <ImageTarget name="book" size="0.150000 0.193878" />
     <ImageTarget name="MadanBhandari" size="0.120000 0.106513" />
   </Tracking>
 </QCARConfig>

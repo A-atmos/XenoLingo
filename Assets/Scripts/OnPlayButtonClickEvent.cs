@@ -10,7 +10,6 @@ public class Response
 
     public string result;
 
-
     public static Response FromJson(string json)
     {
         return JsonUtility.FromJson<Response>(json);
@@ -24,18 +23,31 @@ public class OnPlayButtonClickEvent : MonoBehaviour
     public string devnagari_text_field;
     public VirtualButtonBehaviour Vb;
     private Response response;
+    private bool get_data = true;
 
 
-    void PostData() => StartCoroutine(GetAudioClip_Coroutine());
+    void PostData()
+    {
+        
+        StartCoroutine(GetAudioClip_Coroutine());
+        
+    }
+
 
     private void Start()
-    {
+    {  
         Vb.RegisterOnButtonPressed(ButtonTrigger);
     }
+
     public void ButtonTrigger(VirtualButtonBehaviour Vb)
     {
-        Debug.Log("Button Presses");
-        PostData();
+        Debug.Log(Vb.Pressed);
+
+        if (!Vb.Pressed)
+        {
+            Debug.Log("Button Pressed");
+            PostData();
+        }
     }
 
     IEnumerator GetAudioClip_Coroutine()
@@ -51,7 +63,9 @@ public class OnPlayButtonClickEvent : MonoBehaviour
 
         using (UnityWebRequest request = UnityWebRequest.Post(uri + path, form))
         {
+            request.timeout = 10;
             yield return request.SendWebRequest();
+            
             if (request.isNetworkError || request.isHttpError)
             {
                 
@@ -59,14 +73,16 @@ public class OnPlayButtonClickEvent : MonoBehaviour
             else
             {
                 outputFromRequest = request.downloadHandler.text;
+
             }
 
         }
 
         Debug.Log(outputFromRequest);
 
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(uri+pathToAudio, AudioType.WAV))
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(uri+pathToAudio+"?filename="+outputFromRequest, AudioType.WAV))
         {
+            www.timeout = 10;
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.ConnectionError)
