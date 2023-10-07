@@ -27,10 +27,9 @@ To get started with XenoLingo, simply build and install the APK file on your And
 
 ## Workflow:
 
-Application Logic and Object Detection:
+Flowchart for Application Logic, Object Detection and Text-to-Speech:
 <img src='./Assets/images/flowchart1.png' alt='Object-Detection'>
 </br>
-Text-to-Speech Model Abstraction:
 <img src ="./Assets/images/flowchart2.png" alt="Text-To-Speech">[S. Khadka, 2023](#references)
 
 Feel free to Contribute. Make sure to read [CONTRIBUTING GUIDELINES](./CONTRIBUTING.md) and [CODE OF CONDUCT](./CODE_OF_CONDUCT.md) before making a pull request.
